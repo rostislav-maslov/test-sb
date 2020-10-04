@@ -55,7 +55,7 @@ public class {{entity.nameUpper}}ApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Invalid ID"), })
-    public OkResponse<{{entity.nameUpper}}Response> create(@RequestBody {{entity.nameUpper}}Request request) throws {{entity.nameUpper}}ExistException {
+    public OkResponse<{{entity.nameUpper}}Response> create(@RequestBody {{entity.nameUpper}}Request request) {
         return OkResponse.of({{entity.nameUpper}}Mapping.instance()
                 .getResponse().convert(
                         {{entity.name}}ApiService

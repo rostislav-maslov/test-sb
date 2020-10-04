@@ -4,6 +4,7 @@ import {{path}}.base.api.request.SearchRequest;
 import {{path}}.base.api.response.OkResponse;
 import {{path}}.base.api.response.SearchResponse;
 import {{path}}.{{entity.name}}.api.request.{{entity.nameUpper}}Request;
+import {{path}}.{{entity.name}}.api.response.{{entity.nameUpper}}Response;
 import {{path}}.{{entity.name}}.exception.{{entity.nameUpper}}NotExistException;
 import {{path}}.{{entity.name}}.mappings.{{entity.nameUpper}}Mapping;
 import {{path}}.{{entity.name}}.routes.{{entity.nameUpper}}ApiRoutes;
@@ -41,7 +42,7 @@ public class {{entity.nameUpper}}ApiController {
     @ApiOperation(value = "Search {{entity.name}}s", notes = "Use this when you need find {{entity.name}}")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success") })
-    public OkResponse<SearchResponse<{{entity.nameUpper}}FullResponse>> search(@ModelAttribute SearchRequest request) {
+    public OkResponse<SearchResponse<{{entity.nameUpper}}Response>> search(@ModelAttribute SearchRequest request) {
         return OkResponse.of({{entity.nameUpper}}Mapping.instance()
                 .getSearch().convert(
                         {{entity.name}}ApiService
@@ -54,9 +55,9 @@ public class {{entity.nameUpper}}ApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 400, message = "Invalid ID"), })
-    public OkResponse<{{entity.nameUpper}}FullResponse> create(@RequestBody {{entity.nameUpper}}Request request) throws {{entity.nameUpper}}ExistException {
+    public OkResponse<{{entity.nameUpper}}Response> create(@RequestBody {{entity.nameUpper}}Request request) throws {{entity.nameUpper}}ExistException {
         return OkResponse.of({{entity.nameUpper}}Mapping.instance()
-                .getFullResponse().convert(
+                .getResponse().convert(
                         {{entity.name}}ApiService
                                 .create(request)
                 ));
@@ -67,7 +68,7 @@ public class {{entity.nameUpper}}ApiController {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success"),
             @ApiResponse(code = 404, message = "{{entity.nameUpper}} not found") })
-    public OkResponse<{{entity.nameUpper}}FullResponse> updateById(
+    public OkResponse<{{entity.nameUpper}}Response> updateById(
             @ApiParam(value = "{{entity.nameUpper}} ID") @PathVariable ObjectId id,
             @RequestBody {{entity.nameUpper}}Request request) throws {{entity.nameUpper}}NotExistException {
         return OkResponse.of({{entity.nameUpper}}Mapping.instance()

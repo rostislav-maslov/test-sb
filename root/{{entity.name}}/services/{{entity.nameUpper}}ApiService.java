@@ -2,9 +2,7 @@ package {{path}}.{{entity.name}}.services;
 
 import {{path}}.base.api.request.SearchRequest;
 import {{path}}.base.api.response.SearchResponse;
-import {{path}}.{{entity.name}}.api.request.RegistrationRequest;
 import {{path}}.{{entity.name}}.api.request.{{entity.nameUpper}}Request;
-import {{path}}.{{entity.name}}.exception.{{entity.nameUpper}}ExistException;
 import {{path}}.{{entity.name}}.exception.{{entity.nameUpper}}NotExistException;
 import {{path}}.{{entity.name}}.mappings.{{entity.nameUpper}}Mapping;
 import {{path}}.{{entity.name}}.model.{{entity.nameUpper}}Doc;
@@ -47,7 +45,7 @@ public class {{entity.nameUpper}}ApiService {
         return SearchResponse.of({{entity.name}}Docs, count);
     }
 
-    public {{entity.nameUpper}}Doc create({{entity.nameUpper}}Request request) throws {{entity.nameUpper}}ExistException {
+    public {{entity.nameUpper}}Doc create({{entity.nameUpper}}Request request) {
 
         {{entity.nameUpper}}Doc {{entity.name}}Doc = {{entity.nameUpper}}Mapping.instance().getRequest().convert(request);
         {{entity.name}}Doc = {{entity.name}}Repository.save({{entity.name}}Doc);
